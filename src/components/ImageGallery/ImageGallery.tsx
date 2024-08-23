@@ -8,6 +8,7 @@ interface GalleryImage {
   urls: {
     small: string;
     full: string;
+    regular: string;
   };
 }
 

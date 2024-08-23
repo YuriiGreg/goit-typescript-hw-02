@@ -15,6 +15,7 @@ interface Image {
   urls: {
     small: string;
     full: string;
+    regular: string;
   };
 }
 
@@ -85,7 +86,7 @@ const App: React.FC = () => {
           {images.length > 0 && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
         </>
       )}
-      {showModal && (
+      {showModal && selectedImage && (
         <ImageModal
           isOpen={showModal}
           onRequestClose={closeModal}
@@ -98,6 +99,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
 
