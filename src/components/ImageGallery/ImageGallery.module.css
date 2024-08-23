@@ -1,0 +1,15 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    list-style: none;
+}
+
+.galleryItem {
+    flex:  calc(25% - 20px);
+}
+
+.imageCard:hover .image {
+    transform: scale(1.1);
+}

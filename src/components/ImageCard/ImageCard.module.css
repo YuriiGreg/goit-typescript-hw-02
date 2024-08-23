@@ -1,0 +1,16 @@
+.card {
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.image:hover:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
