@@ -9,16 +9,27 @@ import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import styles from './App.module.css';
 
-const App = () => {
-  const [query, setQuery] = useState('');
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+interface Image {
+  id: string;
+  alt_description: string;
+  urls: {
+    small: string;
+    full: string;
+  };
+}
 
-  const fetchImages = async (query, page) => {
+type ErrorType = string | null;
+
+const App: React.FC = () => {
+  const [query, setQuery] = useState<string>('');
+  const [images, setImages] = useState<Image[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<ErrorType>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+
+  const fetchImages = async (query: string, page: number): Promise<void> => {
     const API_KEY = 'nrw8IMVpZJH62hZEidpomIb5xjo2tuu3r8nqtD3MsNs';
     const URL = `https://api.unsplash.com/search/photos?query=${query}&page=${page}&client_id=${API_KEY}`;
 
@@ -41,23 +52,23 @@ const App = () => {
     }
   }, [query, page]);
 
-  const handleSearch = newQuery => {
+  const handleSearch = (newQuery: string): void => {
     setQuery(newQuery);
     setImages([]);
     setPage(1);
     setError(null);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setPage(prevPage => prevPage + 1);
   };
 
-  const handleImageClick = image => {
+  const handleImageClick = (image: Image): void => {
     setSelectedImage(image);
     setShowModal(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setShowModal(false);
     setSelectedImage(null);
   };
@@ -87,6 +98,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

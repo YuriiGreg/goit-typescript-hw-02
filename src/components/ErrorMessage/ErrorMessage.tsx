@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from './ErrorMessage.module.css';
 
-const ErrorMessage = ({ message }) => {
+// Типізація пропсів компонента
+interface ErrorMessageProps {
+  message: string;
+}
+
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   return (
     <div className={styles.errorMessage}>
       <p>{message}</p>
@@ -10,3 +15,4 @@ const ErrorMessage = ({ message }) => {
 };
 
 export default ErrorMessage;
+
