@@ -19,6 +19,12 @@ interface Image {
   };
 }
 
+interface ApiResponse {
+  results: Image[];
+  total: number;
+  total_pages: number;
+}
+
 type ErrorType = string | null;
 
 const App: React.FC = () => {
@@ -38,7 +44,7 @@ const App: React.FC = () => {
     setError(null);
 
     try {
-      const { data } = await axios.get(URL);
+      const { data } = await axios.get<ApiResponse>(URL);
       setImages(prevImages => [...prevImages, ...data.results]);
     } catch (error) {
       setError('Something went wrong. Please try again later.');
