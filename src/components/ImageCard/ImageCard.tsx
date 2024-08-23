@@ -1,20 +1,23 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './ImageCard.module.css';
+interface Image {
+  id: string;
+  alt_description: string;
+  urls: {
+    small: string;
+    full: string;
+  };
+}
+interface ImageCardProps {
+  image: Image;
+  onClick: (image: Image) => void;
+}
 
-const ImageCard = ({ image, onClick }) => (
+const ImageCard: React.FC<ImageCardProps> = ({ image, onClick }) => (
   <div className={styles.card} onClick={() => onClick(image)}>
     <img src={image.urls.small} alt={image.alt_description} className={styles.image} />
   </div>
 );
 
-ImageCard.propTypes = {
-  image: PropTypes.shape({
-    urls: PropTypes.shape({
-      small: PropTypes.string.isRequired,
-    }).isRequired,
-    alt_description: PropTypes.string,
-  }).isRequired,
-  onClick: PropTypes.func.isRequired,
-};
-
 export default ImageCard;
+
